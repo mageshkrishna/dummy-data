@@ -1,0 +1,49 @@
+{
+  "profiles": [
+    {
+      "display_name": "CPU server",
+      "slug": "cpu",
+      "default": true,
+      "kubespawner_override": {
+        "cpu_guarantee": 0.5,
+        "cpu_limit": 1,
+        "mem_guarantee": "1G",
+        "mem_limit": "2G"
+      }
+    },
+    {
+      "display_name": "GPU server (Small)",
+      "slug": "gpu-small",
+      "kubespawner_override": {
+        "image": "custom/gpu-image-small:latest",
+        "cpu_guarantee": 2,
+        "cpu_limit": 4,
+        "mem_guarantee": "4G",
+        "mem_limit": "8G",
+        "extra_resource_guarantees": {
+          "nvidia.com/gpu": 1
+        },
+        "extra_resource_limits": {
+          "nvidia.com/gpu": 1
+        }
+      }
+    },
+    {
+      "display_name": "GPU server (Large)",
+      "slug": "gpu-large",
+      "kubespawner_override": {
+        "image": "custom/gpu-image-large:latest",
+        "cpu_guarantee": 4,
+        "cpu_limit": 8,
+        "mem_guarantee": "8G",
+        "mem_limit": "16G",
+        "extra_resource_guarantees": {
+          "nvidia.com/gpu": 2
+        },
+        "extra_resource_limits": {
+          "nvidia.com/gpu": 2
+        }
+      }
+    }
+  ]
+}
